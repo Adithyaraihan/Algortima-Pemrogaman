@@ -3,12 +3,12 @@ LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 const int trigPin = 9; 
 const int echoPin = 10;
-long durasi; // Variabel untuk menyimpan waktu perubahan PIN Echo dari LOW ke HIGH
+long durasi; 
 int jarak; 
 
 void setup() {
-  pinMode(trigPin, OUTPUT); // Output untuk mengirimkan gelombang suara ultrasonic
-  pinMode(echoPin, INPUT); // Input untuk menerima pantulan gelombang suara ultrasonic
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
   lcd.begin(16, 2);
   lcd.backlight();
   lcd.setCursor(0, 0);
@@ -16,19 +16,16 @@ void setup() {
   lcd.setCursor(0, 1);
   lcd.print("Adithya Raihan");
   delay(2000);
-  Serial.begin(9600); //setup serial monitor dan kecepatan komunikasi
+  Serial.begin(9600);
 }
 
 void loop() {
-  // Membersihkan trigPin
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
 
-  // Membuat nilai trigPin menjadi HIGH
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10); ==
   digitalWrite(trigPin, LOW);
-
   // Membaca echoPin dan memberikan waktu perjalanan gelombang dalam mikro detik\ 
   durasi = pulseIn(echoPin, HIGH);
 
@@ -38,7 +35,6 @@ void loop() {
   Serial.print("Jarak: ");
   Serial.println(jarak);
 
-  //monitor 
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Mengukur jarak");
